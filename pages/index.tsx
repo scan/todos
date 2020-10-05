@@ -3,8 +3,12 @@ import { NextPage } from 'next';
 
 import Container from '@material-ui/core/Container';
 
-const Home: NextPage = () => {
-  return <Container />;
+import ToDoList from 'components/ToDoList';
+
+const Index: NextPage = () => {
+  return <Container>
+    <ToDoList />
+  </Container>;
 };
 
-export default Home;
+export default Index;

@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
 import Theme from 'components/Theme';
+import ToDoProvider from 'provider/ToDoProvider';
 
 const TodosApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => {
   return (
@@ -13,9 +14,11 @@ const TodosApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => {
 
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
       </Head>
-      <Theme>
-        <Component { ...pageProps } />
-      </Theme>
+      <ToDoProvider>
+        <Theme>
+          <Component { ...pageProps } />
+        </Theme>
+      </ToDoProvider>
     </StrictMode>
   );
 };
