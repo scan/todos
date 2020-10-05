@@ -4,6 +4,7 @@ import React, {
   useContext,
   useCallback,
   useState,
+  useEffect,
 } from 'react';
 import { v4 as uuid } from 'uuid';
 
@@ -12,6 +13,7 @@ import concat from 'lodash/concat';
 import filter from 'lodash/filter';
 
 import type { ToDo, ToDoID } from '../todo';
+import { openRepository, Repository } from '../repository';
 
 type ToDoContextData = {
   toDos: ToDo[];
@@ -27,6 +29,18 @@ const ToDoContext = createContext<ToDoContextData>({
 
 const ToDoProvider: FunctionComponent = ({ children }) => {
   const [toDos, setToDos] = useState<ToDo[]>([]);
+  const [repository, setRepository] = useState<Repository | null>(null);
+
+  useEffect(() => {
+    const fetchDate = async () => {
+      const repo = await openRepository();
+      setRepository(repo);
+
+      const todos = await repo.list();
+      setToDos(todos);
+    };
+    void fetchDate();
+  }, [setRepository, setToDos]);
 
   const addToDo = useCallback(
     (message: string) => {
@@ -36,16 +50,24 @@ const ToDoProvider: FunctionComponent = ({ children }) => {
         createdAt: new Date(),
       };
 
+      if (repository) {
+        void repository.insert(newToDo);
+      }
+
       setToDos(concat(toDos, newToDo));
     },
-    [toDos, setToDos]
+    [toDos, setToDos, repository]
   );
 
   const removeToDo = useCallback(
     (tid: ToDoID) => {
+      if (repository) {
+        void repository.remove(tid);
+      }
+
       setToDos(filter(toDos, ({ id }) => id !== tid));
     },
-    [toDos, setToDos]
+    [toDos, setToDos, repository]
   );
 
   return (
