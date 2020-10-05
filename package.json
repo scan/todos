@@ -1,0 +1,84 @@
+{
+  "name": "todos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tom Streller <tom.streller@functional-games.de>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint -c ./.eslintrc.json --ext .ts --ext .tsx ./src ./pages",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "classnames": "^2.2.6",
+    "core-js": "^3.6.5",
+    "lodash": "^4.17.20",
+    "next": "^9.5.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^26.0.14",
+    "@types/lodash": "^4.14.161",
+    "@types/node": "^14.11.2",
+    "@types/react": "^16.9.50",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/uuid": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.3",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "jest": "^26.4.2",
+    "prettier": "^2.1.2",
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.0.3"
+  },
+  "jest": {
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "roots": [
+      "src",
+      "pages"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.ts"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": {
+          "jsx": "react"
+        }
+      }
+    }
+  }
+}
