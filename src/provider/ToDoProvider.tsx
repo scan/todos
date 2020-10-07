@@ -54,9 +54,9 @@ const ToDoProvider: FunctionComponent = ({ children }) => {
         void repository.insert(newToDo);
       }
 
-      setToDos(concat(toDos, newToDo));
+      setToDos((todos) => concat(todos, newToDo));
     },
-    [toDos, setToDos, repository]
+    [setToDos, repository]
   );
 
   const removeToDo = useCallback(
@@ -65,9 +65,9 @@ const ToDoProvider: FunctionComponent = ({ children }) => {
         void repository.remove(tid);
       }
 
-      setToDos(filter(toDos, ({ id }) => id !== tid));
+      setToDos((todos) => filter(todos, ({ id }) => id !== tid));
     },
-    [toDos, setToDos, repository]
+    [setToDos, repository]
   );
 
   return (

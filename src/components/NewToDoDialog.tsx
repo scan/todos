@@ -26,8 +26,9 @@ const NewToDoDialog: FunctionComponent<Props> = ({ onSubmit, onClose, open = fal
     e.preventDefault();
 
     onSubmit(textValue);
+    setTextValue('');
     onClose();
-  }, [onSubmit, onClose, textValue])
+  }, [onSubmit, onClose, textValue, setTextValue])
 
   const handleClose = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
